@@ -685,18 +685,25 @@ namespace nUpdate.Updating
         {
             var installerDirectory = Path.Combine(Path.GetTempPath(), "nUpdate Installer");
             var dotNetZipPath = Path.Combine(installerDirectory, "DotNetZip.dll");
-            var nUpdatePath = Path.Combine(installerDirectory, "nUpdate.dll");
+            //var nUpdatePath = Path.Combine(installerDirectory, "nUpdate.dll");
             var uiBasePath = Path.Combine(installerDirectory, "nUpdate.UpdateInstaller.UIBase.dll");
             var jsonNetPath = Path.Combine(installerDirectory, "Newtonsoft.Json.dll");
             var installerFilePath = Path.Combine(installerDirectory, "nUpdate UpdateInstaller.exe");
             var unpackerAppPdbPath = Path.Combine(installerDirectory, "nUpdate UpdateInstaller.pdb");
 
-            if (Directory.Exists(installerDirectory))
-                Directory.Delete(installerDirectory, true);
+            try
+            {
+                if (Directory.Exists(installerDirectory))
+                    Directory.Delete(installerDirectory, true);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                installerDirectory = Path.Combine(Path.GetTempPath(), "nUpdate Installer", Guid.NewGuid().ToString("N"));
+            }
             Directory.CreateDirectory(installerDirectory);
 
             File.WriteAllBytes(dotNetZipPath, Resources.DotNetZip);
-            File.WriteAllBytes(nUpdatePath, Resources.DotNetZip);
+            //File.WriteAllBytes(nUpdatePath, Resources.DotNetZip);
             File.WriteAllBytes(uiBasePath, Resources.nUpdate_UpdateInstaller_UIBase);
             File.WriteAllBytes(jsonNetPath, Resources.Newtonsoft_Json);
             File.WriteAllBytes(installerFilePath, Resources.nUpdate_UpdateInstaller);
