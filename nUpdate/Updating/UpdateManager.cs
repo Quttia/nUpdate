@@ -684,13 +684,6 @@ namespace nUpdate.Updating
         public void InstallPackage()
         {
             var installerDirectory = Path.Combine(Path.GetTempPath(), "nUpdate Installer");
-            var dotNetZipPath = Path.Combine(installerDirectory, "DotNetZip.dll");
-            //var nUpdatePath = Path.Combine(installerDirectory, "nUpdate.dll");
-            var uiBasePath = Path.Combine(installerDirectory, "nUpdate.UpdateInstaller.UIBase.dll");
-            var jsonNetPath = Path.Combine(installerDirectory, "Newtonsoft.Json.dll");
-            var installerFilePath = Path.Combine(installerDirectory, "nUpdate UpdateInstaller.exe");
-            var unpackerAppPdbPath = Path.Combine(installerDirectory, "nUpdate UpdateInstaller.pdb");
-
             try
             {
                 if (Directory.Exists(installerDirectory))
@@ -701,6 +694,13 @@ namespace nUpdate.Updating
                 installerDirectory = Path.Combine(Path.GetTempPath(), "nUpdate Installer", Guid.NewGuid().ToString("N"));
             }
             Directory.CreateDirectory(installerDirectory);
+
+            var dotNetZipPath = Path.Combine(installerDirectory, "DotNetZip.dll");
+            //var nUpdatePath = Path.Combine(installerDirectory, "nUpdate.dll");
+            var uiBasePath = Path.Combine(installerDirectory, "nUpdate.UpdateInstaller.UIBase.dll");
+            var jsonNetPath = Path.Combine(installerDirectory, "Newtonsoft.Json.dll");
+            var installerFilePath = Path.Combine(installerDirectory, "nUpdate UpdateInstaller.exe");
+            var unpackerAppPdbPath = Path.Combine(installerDirectory, "nUpdate UpdateInstaller.pdb");
 
             File.WriteAllBytes(dotNetZipPath, Resources.DotNetZip);
             //File.WriteAllBytes(nUpdatePath, Resources.DotNetZip);

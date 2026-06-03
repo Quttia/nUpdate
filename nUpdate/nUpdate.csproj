@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>4.0.0</Version>
+    <Version>4.0.1</Version>
     <Authors>Dominic Beger</Authors>
     <Company>Dominic Beger Software Solutions</Company>
     <Description>nUpdate is a powerful and secure update system for .NET applications.</Description>
